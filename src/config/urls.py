@@ -16,8 +16,21 @@ Including another URLconf
 """
 
 from django.contrib import admin
+from django.http import JsonResponse
 from django.urls import path
+
+from prueba import views
+
+
+def chrome_devtools_view(request):
+    # Retorna un JSON vacío con estatus 200 OK
+    return JsonResponse({}, status=200)
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+]
+
+urlpatterns += [
+    path("saludar/", views.saludar),
 ]
