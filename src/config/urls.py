@@ -33,4 +33,5 @@ urlpatterns = [
 
 urlpatterns += [
     path("saludar/", views.saludar),
+    path("saludar2/", views.saludar2),
 ]
