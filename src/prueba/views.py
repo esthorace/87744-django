@@ -16,3 +16,13 @@ def parametros(request, nombre: str, apellido: str):
     nombre = nombre.capitalize()
     apellido = apellido.upper()
     return HttpResponse(f"<p><b>{apellido}</b>, {nombre}</p>")
+
+
+def home(request):
+    from datetime import UTC, datetime
+
+    contexto = {
+        "titulo": "Django",
+        "año": datetime.now(UTC).year,
+    }
+    return render(request, "prueba/home.html", contexto)
