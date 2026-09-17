@@ -36,4 +36,5 @@ urlpatterns += [
     path("saludar/", views.saludar),
     path("saludar2/", views.saludar2),
     path("parametros/<str:nombre>/<str:apellido>/", views.parametros),
+    path("notas/", views.notas),
 ]

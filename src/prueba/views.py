@@ -26,3 +26,8 @@ def home(request):
         "año": datetime.now(UTC).year,
     }
     return render(request, "prueba/home.html", contexto)
+
+
+def notas(request):
+    lista_notas = [1, 10, 4, 7, 8, 5, 7]
+    return render(request, "prueba/notas.html", {"notas": lista_notas})
