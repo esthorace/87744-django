@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from prueba.models import Cliente
+
 
 def saludar(request):
     return HttpResponse("Hola desde Django")
@@ -31,3 +33,8 @@ def home(request):
 def notas(request):
     lista_notas = [1, 10, 4, 7, 8, 5, 7]
     return render(request, "prueba/notas.html", {"notas": lista_notas})
+
+
+def cliente_list(request):
+    clientes = Cliente.objects.all()
+    return render(request, "prueba/cliente_list.html", context={"clientes": clientes})
