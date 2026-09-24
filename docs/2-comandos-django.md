@@ -16,7 +16,7 @@
 
 ## Crear una aplicación
 
-    python manage.py startapp app
+    python manage.py startapp core
 
 ## Preparar archivos de migración
 
@@ -26,13 +26,13 @@
 
     python manage.py migrate
 
-## Shell interactivo con las configuraciones de Django
-
-    python manage.py shell
-
 ## Crear superusuario
 
     python manage.py createsuperuser
+
+## Shell interactivo con las configuraciones de Django
+
+    python manage.py shell
 
 ## Ejecutar pruebas automáticas
 
