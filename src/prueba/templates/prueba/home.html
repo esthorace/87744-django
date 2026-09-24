@@ -12,10 +12,10 @@
                 <li>Es un framework para crear aplicaciones web</li>
                 <li>Su comunidad es gigante</li>
                 <br />
-                <li><a href="saludar/">Saludar</a></li>
-                <li><a href="saludar2/">Saludar 2</a></li>
-                <li><a href="notas/">Lista de notas</a></li>
-                <li><a href="cliente/list">Clientes</a></li>
+                <li><a href="{% url 'prueba:saludar' %}">Saludar</a></li>
+                <li><a href="{% url 'prueba:saludar_2' %}">Saludar 2</a></li>
+                <li><a href="{% url 'prueba:notas' %}">Lista de notas</a></li>
+                <li><a href="{% url 'prueba:cliente_list' %}">Clientes</a></li>
             </ul>
         </main>
         <footer>

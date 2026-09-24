@@ -8,7 +8,7 @@ def saludar(request):
     return HttpResponse("Hola desde Django")
 
 
-def saludar2(request):
+def saludar_2(request):
     mensaje = "Mi App Web"
     print(mensaje)
     return HttpResponse(f"<p>Esta es una prueba de <b>{mensaje}</b></p>")

@@ -17,9 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.http import JsonResponse
-from django.urls import path
-
-from prueba import views
+from django.urls import include, path
 
 
 def chrome_devtools_view(request):
@@ -29,13 +27,5 @@ def chrome_devtools_view(request):
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-]
-
-urlpatterns += [
-    path("", views.home),
-    path("saludar/", views.saludar),
-    path("saludar2/", views.saludar2),
-    path("parametros/<str:nombre>/<str:apellido>/", views.parametros),
-    path("notas/", views.notas),
-    path("cliente/list", views.cliente_list),
+    path("", include("prueba.urls")),
 ]

@@ -10,5 +10,6 @@
         {% for cliente in clientes %}
             <p>{{ cliente.nombre|title }} {{ cliente.apellido|upper }}</p>
         {% endfor %}
+        <a href="{% url 'prueba:home' %}">Volver</a>
     </body>
 </html>
