@@ -29,7 +29,7 @@ class Producto(models.Model):
         verbose_name = "Producto"
         verbose_name_plural = "Productos"
 
-        constraints = [
+        constraints = (
             models.CheckConstraint(
                 condition=Q(stock__gte=0),
                 name="producto_stock_no_negativo",
@@ -46,7 +46,7 @@ class Producto(models.Model):
                 condition=Q(precio_venta__gte=F("precio_costo")),
                 name="producto_precio_mayor_o_igual_costo",
             ),
-        ]
+        )
 
     def clean(self):
         super().clean()
