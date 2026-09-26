@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.contrib.admin import ModelAdmin
 from django.db.models import F
 
 from .models import Categoria, Producto, Proveedor
