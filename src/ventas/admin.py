@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.db.models import F
+from django.http import HttpRequest
 
 from .models import Categoria, Producto, Proveedor
 

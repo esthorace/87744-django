@@ -1,18 +1,17 @@
 from django.core.exceptions import ValidationError
-from django.core.validators import MinValueValidator
 from django.db import models
 from django.db.models import F, Q
 
-from ventas.models.categoria import Categoria
-from ventas.models.proveedor import Proveedor
+from .categoria import Categoria
+from .proveedor import Proveedor
 
 
 class Producto(models.Model):
     nombre = models.CharField(unique=True)
     descripcion = models.TextField(blank=True)
-    precio_costo = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0)])
-    precio_venta = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0)])
-    stock = models.FloatField(default=0, validators=[MinValueValidator(0)])
+    precio_costo = models.DecimalField(max_digits=10, decimal_places=2)
+    precio_venta = models.DecimalField(max_digits=10, decimal_places=2)
+    stock = models.FloatField(default=0)
     codigo_barras = models.CharField(max_length=50, null=True, blank=True, unique=True)
 
     categoria = models.ForeignKey(
