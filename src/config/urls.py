@@ -27,5 +27,7 @@ def chrome_devtools_view(request):
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("prueba.urls")),
+    path("prueba/", include("prueba.urls")),
+    path("", include("core.urls")),
+    path("ventas/", include("ventas.urls")),
 ]
