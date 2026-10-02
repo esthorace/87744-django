@@ -1,0 +1,69 @@
+/* BASE — tokens, reset y layout general */
+
+:root {
+  --bg: #fffaf2;
+  --surface: #fff;
+  --ink: #202020;
+  --muted: #6d6a64;
+  --line: #ece6dc;
+  --yellow: #ffd84d;
+  --coral: #ff806f;
+  --mint: #bfe9d7;
+  --blue: #cbdfff;
+  --pink: #ffd3df;
+  --shadow: 0 18px 50px rgba(32, 32, 32, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* RESPONSIVE */
+@media (max-width: 680px) {
+  .container {
+    width: min(100% - 24px, 1160px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

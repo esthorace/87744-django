@@ -1,0 +1,142 @@
+/* TABLE — componente reutilizable de tablas de datos */
+
+.data-table {
+  width: min(760px, 100%);
+  margin: 0 auto 28px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  border-spacing: 0;
+  border-collapse: separate;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* HEADER */
+.data-table th {
+  text-align: left;
+}
+
+.data-table thead th {
+  padding: 16px 24px;
+  background: #211f1d;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.data-table thead th:first-child {
+  border-top-left-radius: 23px;
+}
+
+.data-table thead th:last-child {
+  border-top-right-radius: 23px;
+}
+
+/* CELLS */
+.data-table tbody td {
+  padding: 18px 24px;
+  border-top: 1px solid var(--line);
+  font-size: 0.95rem;
+  transition: background-color 0.18s ease;
+}
+
+.data-table tbody tr:nth-child(even) td {
+  background: rgba(32, 32, 32, 0.02);
+}
+
+.data-table tbody tr:hover td {
+  background: rgba(255, 216, 77, 0.16);
+}
+
+.data-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 23px;
+}
+
+.data-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 23px;
+}
+
+/* ACTIONS */
+.data-table .table-actions {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.data-table .table-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 850;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.data-table .table-action + .table-action {
+  margin-left: 8px;
+}
+
+.data-table .table-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(32, 32, 32, 0.1);
+}
+
+.data-table .table-action:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.table-action--view {
+  background: var(--blue);
+  color: #2f4a86;
+}
+
+.table-action--edit {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+.table-action--danger {
+  background: #ffe1dc;
+  color: #b33f30;
+}
+
+/* EMPTY STATE */
+.data-table .table-empty {
+  padding: 40px 24px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-style: italic;
+  text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 680px) {
+  .data-table thead th,
+  .data-table tbody td {
+    padding: 12px 14px;
+  }
+
+  .data-table .table-action {
+    padding: 6px 10px;
+    font-size: 0.72rem;
+  }
+
+  .data-table .table-action + .table-action {
+    margin-left: 5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .data-table tbody td,
+  .data-table .table-action {
+    transition: none;
+  }
+}

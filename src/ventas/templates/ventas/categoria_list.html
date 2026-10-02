@@ -1,11 +1,39 @@
 {% extends "core/base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'core/css/table.css' %}" />
+{% endblock styles %}
 
 {% block content %}
-    <h1>Categorías de Productos - Listado</h1>
-    {% for categoria in categorias %}
-        <p>{{ categoria.nombre }}</p>
-    {% endfor %}
-    <p>
-        <a class="button button-primary" href="{% url 'ventas:home' %}">Volver</a>
-    </p>
+    <div class="container section">
+        <h1 class="page-title">Categorías de Productos - Listado</h1>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for categoria in categorias %}
+                    <tr>
+                        <td>{{ categoria.nombre }}</td>
+                        <td class="table-actions">
+                            <a class="table-action table-action--view" href="#">Ver</a>
+                            <a class="table-action table-action--edit" href="#">Editar</a>
+                            <a class="table-action table-action--danger" href="#">Eliminar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td class="table-empty" colspan="2">No hay categorías disponibles.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p>
+            <a class="button button-secondary" href="{% url 'ventas:home' %}">Volver</a>
+        </p>
+    </div>
 {% endblock content %}

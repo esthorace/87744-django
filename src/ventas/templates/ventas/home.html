@@ -1,14 +1,12 @@
 {% extends "core/base.html" %}
 
 {% block content %}
-    <h1>Ventas</h1>
-    <h2>Categorías de productos</h2>
-    <ol>
-        <li>
-            <a class="button button-primary"
-               href="{% url 'ventas:categoria_list' %}">Listar</a>
-        </li>
-    </ol>
+    <div class="container section">
+        <h1 class="page-title">Ventas</h1>
+        <h2 class="page-subtitle">Categorías de productos</h2>
+        <a class="button button-primary"
+           href="{% url 'ventas:categoria_list' %}">Listar</a>
+    </div>
 {% endblock content %}
 
 {% block scripts %}

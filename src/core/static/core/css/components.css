@@ -1,0 +1,98 @@
+/* COMPONENTS — utilidades compartidas por todas las páginas */
+
+/* PAGE HEADINGS */
+.page-title {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 6px 18px 10px;
+  border-radius: 20px;
+  background: var(--yellow);
+  box-shadow: 0 7px 0 rgba(32, 32, 32, 0.07);
+  font-size: clamp(2.3rem, 5.5vw, 3.6rem);
+  font-weight: 950;
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+  transform: rotate(-1.2deg);
+}
+
+.page-subtitle {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 9px;
+  margin-top: 18px;
+  margin-bottom: 16px;
+  padding: 8px 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: #55514a;
+  font-size: 0.85rem;
+  font-weight: 850;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.page-subtitle::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+
+/* BUTTONS */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 48px;
+  padding: 0 19px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  font-size: 0.94rem;
+  font-weight: 850;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.button-primary {
+  background: var(--yellow);
+  box-shadow: 0 10px 0 rgba(237, 191, 23, 0.18);
+}
+
+.button-secondary {
+  background: transparent;
+  border-color: var(--line);
+  color: #4f4c46;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+/* SECTIONS */
+.section {
+  padding: 48px 0;
+}
+
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #fff;
+  font-weight: 900;
+  font-size: 0.76rem;
+  transform: rotate(-3deg);
+}
+
+/* RESPONSIVE */
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}

@@ -1,0 +1,33 @@
+/* FOOTER */
+
+footer {
+  padding: 34px 0 42px;
+  border-top: 1px solid var(--line);
+  margin-top: auto;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+
+.footer-copy {
+  color: #807970;
+  font-size: 0.82rem;
+}
+
+.admin-link {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #787167;
+}
+
+/* RESPONSIVE */
+@media (max-width: 680px) {
+  .footer-inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
