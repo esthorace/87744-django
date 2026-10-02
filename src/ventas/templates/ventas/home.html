@@ -1,18 +1,18 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Digitalers</title>
-    </head>
-    <body>
-        <main>
-            <h1>Ventas</h1>
-            <p><a href="">Categorías de productos</a></p>
-            <ol>
-                <li><a href="{% url 'ventas:categoria_list' %}">Listar</a></li>
-            </ol>
-        </main>
-        <p><a href="{% url 'core:home' %}">Volver</a></p>
-    </body>
-</html>
+{% extends "core/base.html" %}
+
+{% block content %}
+    <h1>Ventas</h1>
+    <h2>Categorías de productos</h2>
+    <ol>
+        <li>
+            <a class="button button-primary"
+               href="{% url 'ventas:categoria_list' %}">Listar</a>
+        </li>
+    </ol>
+{% endblock content %}
+
+{% block scripts %}
+    <script>
+        console.log("Ventas home page loaded.");
+    </script>
+{% endblock scripts %}
