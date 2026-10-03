@@ -3,16 +3,21 @@
 {% load static %}
 
 {% block styles %}
+    <link rel="stylesheet" href="{% static 'core/css/form.css' %}" />
 {% endblock styles %}
 
 {% block content %}
     <div class="container section">
         <h1 class="page-title">Categorías de Productos - Crear</h1>
-        <form method="post">
+        <form method="post" class="form">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Guardar</button>
+            <div class="form-actions">
+                <button type="submit" class="button button-primary">Guardar</button>
+            </div>
         </form>
-        <a class="button button-secondary" href="{% url 'ventas:home' %}">Volver</a>
+        <div class="page-actions">
+            <a class="button button-secondary" href="{% url 'ventas:home' %}">Volver</a>
+        </div>
     </div>
 {% endblock content %}

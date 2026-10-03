@@ -1,0 +1,154 @@
+/* FORM — componente reutilizable de formularios (Django form.as_p) */
+
+.form {
+  width: min(560px, 100%);
+  margin: 0 auto 28px;
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+}
+
+.form p {
+  margin-bottom: 20px;
+}
+
+.form > p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* LABELS */
+.form label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 0.84rem;
+  font-weight: 850;
+  color: #4b4944;
+}
+
+.form p:has(input:required) label::after {
+  content: " *";
+  color: var(--coral);
+}
+
+/* FIELDS */
+.form input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]),
+.form textarea,
+.form select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.form input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):hover,
+.form textarea:hover,
+.form select:hover {
+  border-color: #d9d2c6;
+}
+
+.form input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):focus,
+.form textarea:focus,
+.form select:focus {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 4px rgba(255, 216, 77, 0.5);
+}
+
+.form textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* SELECT */
+.form select {
+  appearance: none;
+  padding-right: 42px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236d6a64' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+
+/* CHECKBOX / RADIO (Django los renderiza antes del label) */
+.form input[type="checkbox"],
+.form input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--yellow);
+  cursor: pointer;
+}
+
+.form input[type="checkbox"] + label,
+.form input[type="radio"] + label {
+  display: inline;
+  margin: 0;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ERRORS */
+.form .errorlist {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: #ffe1dc;
+  color: #b33f30;
+  font-size: 0.8rem;
+  font-weight: 750;
+}
+
+.form > .errorlist {
+  margin-bottom: 20px;
+}
+
+.form .errorlist ~ input,
+.form .errorlist ~ textarea,
+.form .errorlist ~ select {
+  border-color: var(--coral);
+}
+
+/* HELP TEXT */
+.form .helptext {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* ACTIONS */
+.form-actions {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 680px) {
+  .form {
+    padding: 22px 18px;
+  }
+
+  .form-actions .button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form input,
+  .form textarea,
+  .form select {
+    transition: none;
+  }
+}

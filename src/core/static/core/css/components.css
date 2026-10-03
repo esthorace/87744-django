@@ -64,13 +64,41 @@
 }
 
 .button-secondary {
-  background: transparent;
+  background: var(--surface);
   border-color: var(--line);
   color: #4f4c46;
+  box-shadow: 0 6px 16px rgba(32, 32, 32, 0.06);
 }
 
 .button:hover {
   transform: translateY(-2px);
+}
+
+.button-secondary:hover {
+  border-color: #cfc7b9;
+  color: var(--ink);
+  box-shadow: 0 10px 22px rgba(32, 32, 32, 0.1);
+}
+
+/* PAGE ACTIONS — fila centrada de acciones bajo una card */
+.page-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* PAGE HEAD — título + acción principal (ej: botón Crear) */
+.page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.page-head .page-title {
+  margin-bottom: 0;
 }
 
 /* SECTIONS */

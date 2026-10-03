@@ -8,7 +8,11 @@
 
 {% block content %}
     <div class="container section">
-        <h1 class="page-title">Categorías de Productos - Listado</h1>
+        <div class="page-head">
+            <h1 class="page-title">Categorías de Productos - Listado</h1>
+            <a class="button button-primary"
+               href="{% url 'ventas:categoria_create' %}">Crear</a>
+        </div>
         <table class="data-table">
             <thead>
                 <tr>
@@ -33,6 +37,8 @@
                 {% endfor %}
             </tbody>
         </table>
-        <a class="button button-secondary" href="{% url 'ventas:home' %}">Volver</a>
+        <div class="page-actions">
+            <a class="button button-secondary" href="{% url 'ventas:home' %}">Volver</a>
+        </div>
     </div>
 {% endblock content %}
