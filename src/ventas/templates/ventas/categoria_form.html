@@ -1,0 +1,18 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block styles %}
+{% endblock styles %}
+
+{% block content %}
+    <div class="container section">
+        <h1 class="page-title">Categorías de Productos - Crear</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Guardar</button>
+        </form>
+        <a class="button button-secondary" href="{% url 'ventas:home' %}">Volver</a>
+    </div>
+{% endblock content %}
