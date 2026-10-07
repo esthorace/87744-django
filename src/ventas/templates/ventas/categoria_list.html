@@ -27,7 +27,8 @@
                         <td class="table-actions">
                             <a class="table-action table-action--view"
                                href="{% url 'ventas:categoria_detail' categoria.pk %}">Ver</a>
-                            <a class="table-action table-action--edit" href="#">Editar</a>
+                            <a class="table-action table-action--edit"
+                               href="{% url 'ventas:categoria_update' categoria.pk %}">Editar</a>
                             <a class="table-action table-action--danger" href="#">Eliminar</a>
                         </td>
                     </tr>

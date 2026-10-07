@@ -8,7 +8,11 @@
 
 {% block content %}
     <div class="container section">
-        <h1 class="page-title">Categorías de Productos - Crear</h1>
+        {% if form.instance.pk %}
+            <h1 class="page-title">Categorías de Productos - Editar</h1>
+        {% else %}
+            <h1 class="page-title">Categorías de Productos - Crear</h1>
+        {% endif %}
         <form method="post" class="form">
             {% csrf_token %}
             {{ form.as_p }}
@@ -17,7 +21,8 @@
             </div>
         </form>
         <div class="page-actions">
-            <a class="button button-secondary" href="{% url 'ventas:home' %}">Volver</a>
+            <a class="button button-secondary"
+               href="{% url 'ventas:categoria_list' %}">Volver</a>
         </div>
     </div>
 {% endblock content %}

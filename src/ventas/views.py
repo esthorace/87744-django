@@ -34,3 +34,17 @@ def categoria_detail(request: HttpRequest, pk: int) -> HttpResponse:
     categoria = get_object_or_404(Categoria, pk=pk)
 
     return render(request, "ventas/categoria_detail.html", {"categoria": categoria})
+
+
+def categoria_update(request: HttpRequest, pk: int) -> HttpResponse:
+    categoria = get_object_or_404(Categoria, pk=pk)
+
+    if request.method == "GET":
+        form = CategoriaForm(instance=categoria)
+    if request.method == "POST":
+        form = CategoriaForm(request.POST, instance=categoria)
+        if form.is_valid():
+            form.save()
+            return redirect("ventas:categoria_list")
+
+    return render(request, "ventas/categoria_form.html", {"form": form})
