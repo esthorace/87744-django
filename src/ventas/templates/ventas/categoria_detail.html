@@ -1,0 +1,19 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="#" />
+{% endblock styles %}
+
+{% block content %}
+    <div class="container section">
+        <h1 class="page-title">Categorías de Productos - Vista en detalle</h1>
+        <div>Nombre: {{ categoria.nombre }}</div>
+        <div>Descripción: {{ categoria.descripcion|default:"-" }}</div>
+        <div class="page-actions">
+            <a class="button button-secondary"
+               href="{% url 'ventas:categoria_list' %}">Volver</a>
+        </div>
+    </div>
+{% endblock content %}
