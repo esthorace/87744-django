@@ -1,0 +1,243 @@
+/* DETAIL — componente reutilizable de vistas en detalle (CRUDs) */
+
+.detail-card {
+  position: relative;
+  width: min(760px, 100%);
+  margin: 0 auto 28px;
+  padding: 34px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* CINTA DE ACENTO + STICKER DECORATIVO */
+.detail-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 7px;
+  background: linear-gradient(90deg, var(--yellow), var(--coral) 55%, var(--pink));
+}
+
+.detail-card::after {
+  content: "";
+  position: absolute;
+  top: -70px;
+  right: -70px;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: rgba(255, 216, 77, 0.22);
+  pointer-events: none;
+}
+
+/* HEAD — kicker + título + id */
+.detail-head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding-bottom: 22px;
+  border-bottom: 1px dashed var(--line);
+}
+
+.detail-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--bg);
+  color: #55514a;
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transform: rotate(-1.5deg);
+}
+
+.detail-kicker::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+
+.detail-title {
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  font-weight: 950;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  overflow-wrap: anywhere;
+}
+
+.detail-id {
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+}
+
+/* CAMPOS — grid de fichas */
+.detail-fields {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.detail-field {
+  padding: 18px 20px;
+  background: var(--bg);
+  border: 1px solid rgba(32, 32, 32, 0.05);
+  border-radius: 18px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.detail-field:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(32, 32, 32, 0.07);
+}
+
+.detail-field--wide {
+  grid-column: 1 / -1;
+}
+
+.detail-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.detail-value {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.detail-value--empty {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* SLOT OPCIONAL — relaciones / contenido extra */
+.detail-extra {
+  position: relative;
+  z-index: 1;
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px dashed var(--line);
+}
+
+/* ACCIONES */
+.detail-actions {
+  position: relative;
+  z-index: 1;
+  margin-top: 28px;
+}
+
+/* VARIANTES DE ACENTO */
+.detail-card--mint::before {
+  background: linear-gradient(90deg, var(--mint), var(--blue));
+}
+
+.detail-card--mint::after {
+  background: rgba(191, 233, 215, 0.35);
+}
+
+.detail-card--blue::before {
+  background: linear-gradient(90deg, var(--blue), var(--mint));
+}
+
+.detail-card--blue::after {
+  background: rgba(203, 223, 255, 0.4);
+}
+
+.detail-card--pink::before {
+  background: linear-gradient(90deg, var(--pink), var(--yellow));
+}
+
+.detail-card--pink::after {
+  background: rgba(255, 211, 223, 0.45);
+}
+
+.detail-card--mint .detail-kicker::before {
+  background: var(--mint);
+}
+
+.detail-card--blue .detail-kicker::before {
+  background: var(--blue);
+}
+
+.detail-card--pink .detail-kicker::before {
+  background: var(--pink);
+}
+
+/* RESPONSIVE */
+@media (max-width: 980px) {
+  .detail-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-field--wide {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 680px) {
+  .detail-card {
+    padding: 24px 18px;
+  }
+
+  .detail-card::after {
+    width: 140px;
+    height: 140px;
+    top: -55px;
+    right: -55px;
+  }
+
+  .detail-title {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+
+  .detail-fields {
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .detail-field {
+    padding: 15px 16px;
+  }
+
+  .detail-value {
+    font-size: 1.05rem;
+  }
+
+  .detail-actions .button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .detail-field {
+    transition: none;
+  }
+}
