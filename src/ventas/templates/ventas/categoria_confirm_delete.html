@@ -1,0 +1,19 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'core/css/detail.css' %}" />
+{% endblock styles %}
+
+{% block content %}
+    <div class="container section">
+        <h1>Categoría de Producto - Eliminar</h1>
+        <p>¿Estás seguro que quieres eliminar "{{ categoria }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Sí, confirmo</button>
+        </form>
+        <a href="{% url 'ventas:categoria_list' %}">Volver</a>
+    </div>
+{% endblock content %}

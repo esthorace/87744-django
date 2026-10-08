@@ -29,7 +29,8 @@
                                href="{% url 'ventas:categoria_detail' categoria.pk %}">Ver</a>
                             <a class="table-action table-action--edit"
                                href="{% url 'ventas:categoria_update' categoria.pk %}">Editar</a>
-                            <a class="table-action table-action--danger" href="#">Eliminar</a>
+                            <a class="table-action table-action--danger"
+                               href="{% url 'ventas:categoria_delete' categoria.pk %}">Eliminar</a>
                         </td>
                     </tr>
                 {% empty %}
