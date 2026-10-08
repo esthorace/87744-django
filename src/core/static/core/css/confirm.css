@@ -1,0 +1,140 @@
+/* CONFIRM — componente reutilizable de confirmación de eliminación (CRUDs) */
+
+.confirm-card {
+  position: relative;
+  width: min(560px, 100%);
+  margin: 0 auto 28px;
+  padding: 36px 34px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* CINTA DE PELIGRO + STICKER DECORATIVO */
+.confirm-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 7px;
+  background: linear-gradient(90deg, var(--coral), var(--pink) 55%, var(--yellow));
+}
+
+.confirm-card::after {
+  content: "";
+  position: absolute;
+  top: -70px;
+  left: -70px;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: rgba(255, 128, 111, 0.16);
+  pointer-events: none;
+}
+
+/* BADGE — icono de advertencia */
+.confirm-badge {
+  position: relative;
+  z-index: 1;
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 18px;
+  border-radius: 24px;
+  background: #ffe1dc;
+  font-size: 34px;
+  line-height: 1;
+  transform: rotate(-4deg);
+}
+
+/* TÍTULO */
+.confirm-title {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(1.5rem, 4vw, 2.05rem);
+  font-weight: 950;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
+}
+
+.confirm-name {
+  background: linear-gradient(transparent 62%, rgba(255, 216, 77, 0.85) 62%);
+  color: inherit;
+  padding: 0 3px;
+  border-radius: 4px;
+}
+
+/* TEXTO */
+.confirm-text {
+  position: relative;
+  z-index: 1;
+  max-width: 44ch;
+  margin: 14px auto 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* NOTA OPCIONAL */
+.confirm-note {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  margin-top: 16px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: var(--bg);
+  color: #55514a;
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ACCIONES — reutiliza .page-actions + .button de components.css */
+.confirm-form {
+  position: relative;
+  z-index: 1;
+  margin-top: 26px;
+}
+
+.confirm-actions {
+  margin-top: 0;
+}
+
+.confirm-actions .button {
+  min-width: 150px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 680px) {
+  .confirm-card {
+    padding: 28px 18px;
+  }
+
+  .confirm-card::after {
+    width: 140px;
+    height: 140px;
+    top: -55px;
+    left: -55px;
+  }
+
+  .confirm-badge {
+    width: 64px;
+    height: 64px;
+    font-size: 29px;
+  }
+
+  .confirm-actions {
+    flex-direction: column;
+  }
+
+  .confirm-actions .button {
+    width: 100%;
+    min-width: 0;
+  }
+}
