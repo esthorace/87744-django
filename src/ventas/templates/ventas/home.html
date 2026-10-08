@@ -1,4 +1,5 @@
 {% extends "core/base.html" %}
+
 {% load static %}
 
 {% block styles %}
@@ -16,12 +17,12 @@
                 <p class="model-card-copy">Grupos de productos para organizar el inventario.</p>
                 <span class="model-card-cta">Ver listado →</span>
             </a>
-            <div class="model-card model-card--disabled" aria-disabled="true">
+            <a class="model-card" href="{% url 'ventas:producto_list' %}">
                 <span class="model-icon model-icon--mint material-symbols-rounded">inventory_2</span>
                 <h3 class="model-card-title">Productos</h3>
                 <p class="model-card-copy">Artículos con precios, stock y código de barras.</p>
-                <span class="model-badge"><span>Próximamente</span></span>
-            </div>
+                <span class="model-card-cta"><span>Ver listado →</span></span>
+            </a>
             <div class="model-card model-card--disabled" aria-disabled="true">
                 <span class="model-icon model-icon--blue material-symbols-rounded">local_shipping</span>
                 <h3 class="model-card-title">Proveedores</h3>

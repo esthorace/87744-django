@@ -1,0 +1,28 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'core/css/form.css' %}" />
+{% endblock styles %}
+
+{% block content %}
+    <div class="container section">
+        {% if form.instance.pk %}
+            <h1 class="page-title">Productos - Editar</h1>
+        {% else %}
+            <h1 class="page-title">Productos - Crear</h1>
+        {% endif %}
+        <form method="post" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="form-actions">
+                <button type="submit" class="button button-primary">Guardar</button>
+            </div>
+        </form>
+        <div class="page-actions">
+            <a class="button button-secondary"
+               href="{% url 'ventas:producto_list' %}">Volver</a>
+        </div>
+    </div>
+{% endblock content %}

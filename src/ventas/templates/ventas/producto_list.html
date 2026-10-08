@@ -1,0 +1,44 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'core/css/table.css' %}" />
+{% endblock styles %}
+
+{% block content %}
+    <div class="container section">
+        <div class="page-head">
+            <h1 class="page-title">Productos - Listado</h1>
+            <a class="button button-primary"
+               href="{% url 'ventas:producto_create' %}">Crear</a>
+        </div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in object_list %}
+                    <tr>
+                        <td>{{ producto.pk }} - {{ producto.nombre }}</td>
+                        <td class="table-actions">
+                            <a class="table-action table-action--view" href="#">Ver</a>
+                            <a class="table-action table-action--edit" href="#">Editar</a>
+                            <a class="table-action table-action--danger" href="#">Eliminar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td class="table-empty" colspan="2">No hay categorías disponibles.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="page-actions">
+            <a class="button button-secondary" href="{% url 'ventas:home' %}">Volver</a>
+        </div>
+    </div>
+{% endblock content %}

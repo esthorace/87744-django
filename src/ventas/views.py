@@ -1,8 +1,11 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
-from .forms import CategoriaForm
+from .forms import CategoriaForm, ProductoForm
 from .models.categoria import Categoria
+from .models.producto import Producto
 
 
 def home(request: HttpRequest) -> HttpResponse:
@@ -12,6 +15,12 @@ def home(request: HttpRequest) -> HttpResponse:
 def categoria_list(request: HttpRequest) -> HttpResponse:
     categorias = Categoria.objects.all()
     return render(request, "ventas/categoria_list.html", {"categorias": categorias})
+
+
+class ProductoList(ListView):
+    model = Producto
+    # context_object_name = "productos"  -> por default es "object_list"
+    # template_name = "ventas/producto_list.html"  -> por default busca <nombremodelo_list.html>
 
 
 def categoria_create(request: HttpRequest) -> HttpResponse:
@@ -24,6 +33,13 @@ def categoria_create(request: HttpRequest) -> HttpResponse:
             return redirect("ventas:categoria_list")
 
     return render(request, "ventas/categoria_form.html", {"form": form})
+
+
+class ProductoCreate(CreateView):
+    model = Producto
+    form_class = ProductoForm
+    success_url = reverse_lazy("ventas:producto_list")
+    # template_name = "ventas/producto_form.html"  -> por default busca <nombremodelo_form.html>
 
 
 def categoria_detail(request: HttpRequest, pk: int) -> HttpResponse:
