@@ -23,9 +23,10 @@
             <tbody>
                 {% for producto in object_list %}
                     <tr>
-                        <td>{{ producto.pk }} - {{ producto.nombre }}</td>
+                        <td>{{ producto.nombre }}</td>
                         <td class="table-actions">
-                            <a class="table-action table-action--view" href="#">Ver</a>
+                            <a class="table-action table-action--view"
+                               href="{% url 'ventas:producto_detail' producto.pk %}">Ver</a>
                             <a class="table-action table-action--edit" href="#">Editar</a>
                             <a class="table-action table-action--danger" href="#">Eliminar</a>
                         </td>

@@ -1,0 +1,78 @@
+{% extends "core/base.html" %}
+
+{% load humanize %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'core/css/detail.css' %}" />
+{% endblock styles %}
+
+{% block content %}
+    <div class="container section">
+        <div class="detail-card">
+            <header class="detail-head">
+                <span class="detail-kicker">Producto</span>
+                <h1 class="detail-title">{{ producto.nombre }}</h1>
+                <span class="detail-id">ID {{ producto.pk }}</span>
+            </header>
+            <dl class="detail-fields">
+                <div class="detail-field">
+                    <dt class="detail-label">Categoría</dt>
+                    <dd class="detail-value
+                               {% if not producto.categoria.nombre %}detail-value--empty{% endif %}">
+                        {{ producto.categoria.nombre|default:"Sin datos" }}
+                    </dd>
+                </div>
+                <div class="detail-field">
+                    <dt class="detail-label">Nombre</dt>
+                    <dd class="detail-value">
+                        {{ producto.nombre }}
+                    </dd>
+                </div>
+                <div class="detail-field">
+                    <dt class="detail-label">Descripción</dt>
+                    <dd class="detail-value
+                               {% if not producto.descripcion %}detail-value--empty{% endif %}">
+                        {{ producto.descripcion|default:"Sin datos"|linebreaksbr }}
+                    </dd>
+                </div>
+                <div class="detail-field">
+                    <dt class="detail-label">Precio de costo</dt>
+                    <dd class="detail-value">
+                        $ {{ producto.precio_costo|intcomma }}
+                    </dd>
+                </div>
+                <div class="detail-field">
+                    <dt class="detail-label">Precio de venta</dt>
+                    <dd class="detail-value">
+                        $ {{ producto.precio_costo|intcomma }}
+                    </dd>
+                </div>
+                <div class="detail-field">
+                    <dt class="detail-label">Stock</dt>
+                    <dd class="detail-value">
+                        {{ producto.stock|intcomma }}
+                    </dd>
+                </div>
+                <div class="detail-field">
+                    <dt class="detail-label">Código de barras</dt>
+                    <dd class="detail-value
+                               {% if not producto.codigo_barras %}detail-value--empty{% endif %}">
+                        {{ producto.codigo_barras|default:"Sin datos" }}
+                    </dd>
+                </div>
+                <div class="detail-field">
+                    <dt class="detail-label">Proveedor</dt>
+                    <dd class="detail-value
+                               {% if not producto.proveedor.nombre %}detail-value--empty{% endif %}">
+                        {{ producto.proveedor.nombre|default:"Sin datos" }}
+                    </dd>
+                </div>
+            </dl>
+            <div class="page-actions detail-actions">
+                <a class="button button-secondary"
+                   href="{% url 'ventas:producto_list' %}">Volver</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

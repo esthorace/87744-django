@@ -19,7 +19,7 @@ urlpatterns += [
 urlpatterns += [
     path("producto/", views.ProductoList.as_view(), name="producto_list"),
     path("producto/create/", views.ProductoCreate.as_view(), name="producto_create"),
-    # path("producto/detail/<int:pk>", views.producto_detail, name="producto_detail"),
+    path("producto/detail/<int:pk>", views.ProductoDetail.as_view(), name="producto_detail"),
     # path("producto/update/<int:pk>", views.producto_update, name="producto_update"),
     # path("producto/delete/<int:pk>", views.producto_delete, name="producto_delete"),
 ]
