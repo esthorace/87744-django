@@ -1,0 +1,28 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'core/css/confirm.css' %}" />
+{% endblock styles %}
+
+{% block content %}
+    <div class="container section">
+        <div class="confirm-card">
+            <span class="confirm-badge" aria-hidden="true">🗑️</span>
+            <h1 class="confirm-title">
+                ¿Eliminar <mark class="confirm-name">{{ producto }}</mark>?
+            </h1>
+            <p class="confirm-text">Esta acción no se puede deshacer. El registro se borrará de forma permanente.</p>
+            <span class="confirm-note">Confirmación requerida</span>
+            <form method="post" class="confirm-form">
+                {% csrf_token %}
+                <div class="page-actions confirm-actions">
+                    <button type="submit" class="button button-danger">Sí, eliminar</button>
+                    <a class="button button-secondary"
+                       href="{% url 'ventas:producto_list' %}">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
