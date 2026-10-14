@@ -13,6 +13,11 @@
             <a class="button button-primary"
                href="{% url 'ventas:categoria_create' %}">Crear</a>
         </div>
+        <div class="container">
+            <form class="form" method="get">
+                <input type="text" name="busqueda" placeholder="Buscar..." />
+            </form>
+        </div>
         <table class="data-table">
             <thead>
                 <tr>

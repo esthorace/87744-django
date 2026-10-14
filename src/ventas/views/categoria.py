@@ -8,7 +8,11 @@ from ..models.categoria import Categoria
 
 
 def categoria_list(request: HttpRequest) -> HttpResponse:
-    categorias = Categoria.objects.all()
+    busqueda = request.GET.get("busqueda", None)
+    if busqueda:
+        categorias = Categoria.objects.filter(nombre__icontains=busqueda)
+    else:
+        categorias = Categoria.objects.all()
     return render(request, "ventas/categoria_list.html", {"categorias": categorias})
 
 

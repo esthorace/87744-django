@@ -37,6 +37,7 @@ objeto.delete()
 ```py
 Modelo.objects.filter(campo="valor")
 Modelo.objects.filter(campo__contains="subcadena")
+Modelo.objects.filter(campo__icontains="subcadena") # Es insensible a mayúsculas y minúsculas
 Modelo.objects.filter(campo__startswith="inicio")
 Modelo.objects.filter(campo__endswith="final")
 ```
