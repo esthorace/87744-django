@@ -1,0 +1,24 @@
+{# SEARCH — parcial reutilizable (DRY) para listados CRUD. #}
+{# Uso: {% include "core/partials/search.html" with placeholder="Buscar productos por nombre…" label="Buscar productos" clear_url="ventas:producto_list" %} #}
+{# Requiere core/css/search.css cargado en el template que lo incluye. #}
+{# El parámetro GET es siempre "busqueda" para todos los CRUD. #}
+<form class="search" method="get" role="search">
+    <span class="search__icon" aria-hidden="true">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="9" cy="9" r="6" />
+            <line x1="13.5" y1="13.5" x2="17" y2="17" />
+        </svg>
+    </span>
+    <label class="visually-hidden" for="busqueda">{{ label|default:"Buscar" }}</label>
+    <input id="busqueda"
+           class="search__input"
+           type="search"
+           name="busqueda"
+           placeholder="{{ placeholder|default:'Buscar…' }}"
+           value="{{ request.GET.busqueda|default:'' }}"
+           autocomplete="off" />
+    {% if request.GET.busqueda %}
+        <a class="search__clear" href="{% url clear_url %}">Limpiar</a>
+    {% endif %}
+    <button class="button button-primary search__button" type="submit">Buscar</button>
+</form>

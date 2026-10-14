@@ -4,6 +4,7 @@
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'core/css/table.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/css/search.css' %}" />
 {% endblock styles %}
 
 {% block content %}
@@ -13,11 +14,7 @@
             <a class="button button-primary"
                href="{% url 'ventas:categoria_create' %}">Crear</a>
         </div>
-        <div class="container">
-            <form class="form" method="get">
-                <input type="text" name="busqueda" placeholder="Buscar..." />
-            </form>
-        </div>
+        {% include "core/partials/search.html" with placeholder="Buscar categorías por nombre…" label="Buscar categorías" clear_url="ventas:categoria_list" %}
         <table class="data-table">
             <thead>
                 <tr>

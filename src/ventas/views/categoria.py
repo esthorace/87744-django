@@ -3,12 +3,15 @@ __all__ = ["categoria_create", "categoria_delete", "categoria_detail", "categori
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
+from core.search import filter_by_search
+
 from ..forms import CategoriaForm
 from ..models.categoria import Categoria
 
 
 def categoria_list(request: HttpRequest) -> HttpResponse:
-    busqueda = request.GET.get("busqueda", None)
+    # categorias = filter_by_search(request, Categoria.objects.all(), "nombre__icontains")
+    busqueda = request.GET.get("busqueda", "").strip()
     if busqueda:
         categorias = Categoria.objects.filter(nombre__icontains=busqueda)
     else:
