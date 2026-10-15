@@ -1,5 +1,6 @@
 __all__ = ["categoria_create", "categoria_delete", "categoria_detail", "categoria_list", "categoria_update"]
 
+from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -25,6 +26,7 @@ def categoria_create(request: HttpRequest) -> HttpResponse:
         form = CategoriaForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "La categoría fue creada exitosamente")
             return redirect("ventas:categoria_list")
     else:
         # ejecuta request de tipo GET y cualquier otro tipo
@@ -50,6 +52,7 @@ def categoria_update(request: HttpRequest, pk: int) -> HttpResponse:
         form = CategoriaForm(request.POST, instance=categoria)
         if form.is_valid():
             form.save()
+            messages.success(request, "La categoría fue editada exitosamente")
             return redirect("ventas:categoria_list")
     else:
         form = CategoriaForm(instance=categoria)
@@ -61,6 +64,7 @@ def categoria_delete(request: HttpRequest, pk: int) -> HttpResponse:
 
     if request.method == "POST":
         categoria.delete()
+        messages.success(request, "La categoría fue eliminada")
         return redirect("ventas:categoria_list")
 
     return render(request, "ventas/categoria_confirm_delete.html", {"categoria": categoria})
