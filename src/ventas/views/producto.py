@@ -3,6 +3,7 @@ __all__ = ["ProductoCreate", "ProductoDelete", "ProductoDetail", "ProductoList",
 
 from typing import Any
 
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models.query import QuerySet
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
@@ -33,11 +34,12 @@ class ProductoList(ListView):
         return productos
 
 
-class ProductoCreate(CreateView):
+class ProductoCreate(SuccessMessageMixin, CreateView):
     model = Producto
     form_class = ProductoForm
     success_url = reverse_lazy("ventas:producto_list")
     # template_name = "ventas/producto_form.html"  -> por default busca <nombremodelo_form.html>
+    success_message = "El producto se ha creado exitosamente"
 
 
 class ProductoDetail(DetailView):
@@ -46,12 +48,14 @@ class ProductoDetail(DetailView):
     # template_name = "ventas/producto_detail.html"
 
 
-class ProductoUpdate(UpdateView):
+class ProductoUpdate(SuccessMessageMixin, UpdateView):
     model = Producto
     form_class = ProductoForm
     success_url = reverse_lazy("ventas:producto_list")
+    success_message = "El producto se ha editado exitosamente"
 
 
-class ProductoDelete(DeleteView):
+class ProductoDelete(SuccessMessageMixin, DeleteView):
     model = Producto
     success_url = reverse_lazy("ventas:producto_list")
+    success_message = "El producto se ha eliminado"
