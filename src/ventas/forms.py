@@ -10,6 +10,12 @@ class CategoriaForm(forms.ModelForm):
         # fields = ("nombre", "descripcion")
         fields = "__all__"
 
+    def clean_nombre(self) -> str:
+        nombre = self.cleaned_data.get("nombre", "")
+        if len(nombre) < 3:
+            raise forms.ValidationError("El nombre debe contener al menos 3 caracteres")
+        return nombre
+
 
 class ProductoForm(forms.ModelForm):
     class Meta:
