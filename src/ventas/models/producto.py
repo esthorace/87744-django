@@ -2,13 +2,15 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import F, Q
 
+from core.validators import ValidarTextoEspañol
+
 from .categoria import Categoria
 from .proveedor import Proveedor
 
 
 class Producto(models.Model):
-    nombre = models.CharField(unique=True)
-    descripcion = models.TextField(blank=True)
+    nombre = models.CharField(unique=True, validators=[ValidarTextoEspañol(min_longitud=3)])
+    descripcion = models.TextField(blank=True, validators=[ValidarTextoEspañol(min_longitud=10)])
     precio_costo = models.DecimalField(max_digits=10, decimal_places=2)
     precio_venta = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.FloatField(default=0)

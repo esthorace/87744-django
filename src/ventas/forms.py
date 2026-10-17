@@ -2,35 +2,38 @@ import re
 
 from django import forms
 
+from core.validators import ValidarTextoEspañol
+
 from .models.categoria import Categoria
 from .models.producto import Producto
 
 
 class CategoriaForm(forms.ModelForm):
+    nombre = forms.CharField(validators=[ValidarTextoEspañol(min_longitud=3)])
+    descripcion = forms.CharField(
+        widget=forms.Textarea,
+        validators=[ValidarTextoEspañol(min_longitud=10)],
+        required=False,
+    )
+
     class Meta:
         model = Categoria
         # fields = ("nombre", "descripcion")
         fields = "__all__"
 
+    def clean_nombre(self) -> str:
+        nombre = self.cleaned_data.get("nombre", "")
 
-def clean_nombre(self) -> str:
-    nombre = self.cleaned_data.get("nombre", "")
+        # Reemplaza múltiples espacios por uno solo y remueve espacios en los bordes
+        nombre = re.sub(r"\s+", " ", nombre.strip())
+        return nombre
 
-    # Reemplaza múltiples espacios por uno solo y remueve espacios en los bordes
-    nombre = re.sub(r"\s+", " ", nombre.strip())
+    def clean_descripcion(self) -> str:
+        descripcion = self.cleaned_data.get("descripcion", "")
 
-    # Validación de longitud
-    if len(nombre) < 3:
-        raise forms.ValidationError("El nombre debe contener al menos 3 caracteres.")
-
-    # Patron: solo letras en español y espacios sencillos
-    patron = r"^[a-zA-záéíóúÁÉÍÓÚüÜñÑ ]+$"
-    if not re.match(patron, nombre):
-        raise forms.ValidationError(
-            "El nombre solo puede contener letras, acentos y espacios, sin números ni caracteres especiales."
-        )
-
-    return nombre
+        # Reemplaza múltiples espacios por uno solo y remueve espacios en los bordes
+        descripcion = re.sub(r"\s+", " ", descripcion.strip())
+        return descripcion
 
 
 class ProductoForm(forms.ModelForm):
