@@ -20,7 +20,7 @@ def login_view(request: HttpRequest) -> HttpResponse:
         if user is not None:
             # Establece una sesión
             login(request, user)
-            return redirect("core:home")
+            return redirect("ventas:home")
 
         error = "Usuario o contraseña incorrectos."
 
