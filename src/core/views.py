@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
@@ -20,6 +21,7 @@ def login_view(request: HttpRequest) -> HttpResponse:
         if user is not None:
             # Establece una sesión
             login(request, user)
+            messages.success(request, "Acceso correcto")
             return redirect("ventas:home")
 
         error = "Usuario o contraseña incorrectos."

@@ -73,6 +73,27 @@
   box-shadow: 0 8px 20px rgba(32, 32, 32, 0.28);
 }
 
+.nav-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #4b4944;
+  font-size: 0.88rem;
+  font-weight: 750;
+}
+
+.nav-user::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--mint);
+  content: "";
+}
+
 /* RESPONSIVE */
 @media (max-width: 680px) {
   .nav-inner {
