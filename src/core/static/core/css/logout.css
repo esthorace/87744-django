@@ -1,0 +1,112 @@
+/* LOGOUT — confirmación de cierre de sesión */
+
+.logout-card {
+  position: relative;
+  width: min(560px, 100%);
+  margin: 0 auto;
+  padding: 40px 34px 36px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* CINTA SUPERIOR — tono positivo, a diferencia del coral de confirm.css */
+.logout-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 7px;
+  background: linear-gradient(90deg, var(--mint), var(--blue) 55%, var(--yellow));
+}
+
+.logout-card::after {
+  content: "";
+  position: absolute;
+  top: -70px;
+  right: -70px;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: rgba(191, 233, 215, 0.35);
+  pointer-events: none;
+}
+
+/* BADGE — despedida */
+.logout-badge {
+  position: relative;
+  z-index: 1;
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 18px;
+  border-radius: 24px;
+  background: var(--mint);
+  font-size: 34px;
+  line-height: 1;
+  transform: rotate(-4deg);
+}
+
+/* TÍTULO */
+.logout-title {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(1.6rem, 4vw, 2.15rem);
+  font-weight: 950;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+}
+
+/* TEXTO */
+.logout-text {
+  position: relative;
+  z-index: 1;
+  max-width: 44ch;
+  margin: 14px auto 0;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+
+/* ACCIONES — reutiliza .page-actions + .button de components.css */
+.logout-actions {
+  position: relative;
+  z-index: 1;
+  margin-top: 28px;
+}
+
+.logout-actions .button {
+  min-width: 170px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 680px) {
+  .logout-card {
+    padding: 30px 18px 28px;
+  }
+
+  .logout-card::after {
+    width: 140px;
+    height: 140px;
+    top: -55px;
+    right: -55px;
+  }
+
+  .logout-badge {
+    width: 64px;
+    height: 64px;
+    font-size: 29px;
+  }
+
+  .logout-actions {
+    flex-direction: column;
+  }
+
+  .logout-actions .button {
+    width: 100%;
+    min-width: 0;
+  }
+}

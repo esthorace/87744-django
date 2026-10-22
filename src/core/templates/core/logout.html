@@ -1,0 +1,25 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'core/css/logout.css' %}" />
+{% endblock styles %}
+
+{% block content %}
+    <section class="section">
+        <div class="container">
+            <div class="logout-card">
+                <span class="logout-badge" aria-hidden="true">👋</span>
+                <h1 class="logout-title">Sesión cerrada</h1>
+                <p class="logout-text">
+                    Has salido correctamente de tu cuenta. Esperamos verte de nuevo pronto por La Esquina.
+                </p>
+                <div class="page-actions logout-actions">
+                    <a class="button button-primary" href="{% url 'core:home' %}">Volver al inicio</a>
+                    <a class="button button-secondary" href="{% url 'core:login' %}">Iniciar sesión</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

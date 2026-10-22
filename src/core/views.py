@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 
@@ -27,3 +27,18 @@ def login_view(request: HttpRequest) -> HttpResponse:
         error = "Usuario o contraseña incorrectos."
 
     return render(request, "core/login.html", {"error": error})
+
+
+def logout_view(request: HttpRequest) -> HttpResponse:
+    # El cierre de sesión solo se ejecuta por POST (formulario del navbar).
+    if request.method == "POST":
+        logout(request)
+        messages.success(request, "Sesión cerrada")
+        # Redirige para que recargar la página no reenvíe el formulario.
+        return redirect("core:logout")
+
+    # Un usuario con sesión activa no debe ver la pantalla de despedida.
+    if request.user.is_authenticated:
+        return redirect("core:home")
+
+    return render(request, "core/logout.html")

@@ -94,6 +94,37 @@
   content: "";
 }
 
+.nav-links form {
+  display: flex;
+}
+
+.nav-logout {
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: #4b4944;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.nav-logout:hover {
+  transform: translateY(-2px);
+  border-color: #d9d2c6;
+  box-shadow: 0 6px 16px rgba(32, 32, 32, 0.08);
+}
+
+.nav-logout:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 216, 77, 0.5);
+}
+
 /* RESPONSIVE */
 @media (max-width: 680px) {
   .nav-inner {

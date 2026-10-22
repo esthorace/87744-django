@@ -12,6 +12,10 @@
             {% endif %}
             {% if user.is_authenticated %}
                 <span class="nav-user">{{ user.username }}</span>
+                <form action="{% url 'core:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class="nav-logout" type="submit">Logout</button>
+                </form>
             {% else %}
                 <a href="{% url 'core:login' %}" class="nav-cta">Acceder</a>
             {% endif %}
