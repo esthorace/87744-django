@@ -22,10 +22,12 @@ class LoginViewTests(TestCase):
         response = self.client.post(
             reverse("core:login"),
             {"username": user.username, "password": "clave-de-prueba"},
+            follow=True,
         )
 
         self.assertRedirects(response, reverse("ventas:home"))
         self.assertEqual(self.client.session["_auth_user_id"], str(user.pk))
+        self.assertContains(response, f"Acceso correcto. ¡Bienvenido {user.username}!")
 
 
 class LogoutViewTests(TestCase):
@@ -60,4 +62,3 @@ class LogoutViewTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Sesión cerrada")
-

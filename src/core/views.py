@@ -1,5 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LoginView
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 
@@ -27,6 +29,18 @@ def login_view(request: HttpRequest) -> HttpResponse:
         error = "Usuario o contraseña incorrectos."
 
     return render(request, "core/login.html", {"error": error})
+
+
+class CustomLoginView(LoginView):
+    template_name = "core/login.html"
+    next_page = "ventas:home"
+    redirect_authenticated_user = True
+
+    def form_valid(self, form: AuthenticationForm) -> HttpResponse:
+        response = super().form_valid(form)
+        username = form.get_user().get_username()
+        messages.success(self.request, f"Acceso correcto. ¡Bienvenido {username}!")
+        return response
 
 
 def logout_view(request: HttpRequest) -> HttpResponse:
