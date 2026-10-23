@@ -1,6 +1,7 @@
 __all__ = ["categoria_create", "categoria_delete", "categoria_detail", "categoria_list", "categoria_update"]
 
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -10,6 +11,7 @@ from ..forms import CategoriaForm
 from ..models.categoria import Categoria
 
 
+@login_required
 def categoria_list(request: HttpRequest) -> HttpResponse:
     # categorias = filter_by_search(request, Categoria.objects.all(), "nombre__icontains")
     busqueda = request.GET.get("busqueda", "").strip()

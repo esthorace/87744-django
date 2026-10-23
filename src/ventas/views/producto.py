@@ -3,12 +3,11 @@ __all__ = ["ProductoCreate", "ProductoDelete", "ProductoDetail", "ProductoList",
 
 from typing import Any
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models.query import QuerySet
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
-
-from core.search import SearchListMixin
 
 from ..forms import ProductoForm
 from ..models.producto import Producto
@@ -20,7 +19,7 @@ from ..models.producto import Producto
 #     # template_name = "ventas/producto_list.html"  -> por default busca <nombremodelo_list.html>
 
 
-class ProductoList(ListView):
+class ProductoList(LoginRequiredMixin, ListView):
     model = Producto
     context_object_name = "productos"  # -> por default es "object_list"
     # template_name = "ventas/producto_list.html"  -> por default busca <nombremodelo_list.html>
