@@ -6,6 +6,10 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+
+from core.forms import CustomUserCreationForm
 
 
 # @login_not_required
@@ -59,3 +63,9 @@ def logout_view(request: HttpRequest) -> HttpResponse:
         return redirect("core:home")
 
     return render(request, "core/logout.html")
+
+
+class RegisterView(CreateView):
+    form_class = CustomUserCreationForm
+    template_name = "core/register.html"
+    success_url = reverse_lazy("core:login")

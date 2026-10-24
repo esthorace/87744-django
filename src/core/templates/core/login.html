@@ -1,4 +1,5 @@
 {% extends "core/base.html" %}
+
 {% load static %}
 
 {% block styles %}
@@ -33,6 +34,9 @@
                     <button class="button button-primary" type="submit">Iniciar sesión</button>
                 </div>
             </form>
+            <div>
+                ¿No tienes una cuenta? <a href="{% url 'core:register' %}">Regístrate aquí</a>
+            </div>
         </div>
     </section>
 {% endblock content %}
