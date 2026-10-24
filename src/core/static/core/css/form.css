@@ -134,6 +134,29 @@
   gap: 12px;
 }
 
+.form-switch {
+  width: min(560px, 100%);
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.form-switch a {
+  color: var(--ink);
+  font-weight: 850;
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.18s ease;
+}
+
+.form-switch a:hover,
+.form-switch a:focus-visible {
+  text-decoration-color: var(--coral);
+}
+
 /* RESPONSIVE */
 @media (max-width: 680px) {
   .form {
