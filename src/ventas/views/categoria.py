@@ -11,7 +11,6 @@ from ..forms import CategoriaForm
 from ..models.categoria import Categoria
 
 
-@login_required
 def categoria_list(request: HttpRequest) -> HttpResponse:
     # categorias = filter_by_search(request, Categoria.objects.all(), "nombre__icontains")
     busqueda = request.GET.get("busqueda", "").strip()
