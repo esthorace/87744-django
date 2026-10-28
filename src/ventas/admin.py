@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django.db.models import F
-from django.http import HttpRequest
 
-from .models import Categoria, Producto, Proveedor
+from .models import Categoria, Producto, Proveedor, Vendedor
 
 
 class StockBajoFilter(admin.SimpleListFilter):
@@ -92,3 +91,6 @@ class ProductoAdmin(admin.ModelAdmin):
         if obj.precio_costo is None or obj.precio_venta is None:
             return "-"
         return obj.precio_venta - obj.precio_costo
+
+
+admin.site.register(Vendedor)
