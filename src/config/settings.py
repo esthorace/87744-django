@@ -43,6 +43,11 @@ INSTALLED_APPS = [
     "ventas",
 ]
 
+# Externos
+INSTALLED_APPS += [
+    "phonenumber_field",
+]
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -132,3 +137,6 @@ MAILERS = {
 }
 
 LOGIN_URL = "core:login"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
