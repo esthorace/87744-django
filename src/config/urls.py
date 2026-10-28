@@ -15,19 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.conf import settings
-from django.conf.urls.static import static
+from django.conf import settings  # para MEDIA
+from django.conf.urls.static import static  # para MEDIA
 from django.contrib import admin
-from django.http import JsonResponse
 from django.urls import include, path
 
 from config.settings import MEDIA_ROOT
-
-
-def chrome_devtools_view(request):
-    # Retorna un JSON vacío con estatus 200 OK
-    return JsonResponse({}, status=200)
-
 
 urlpatterns = [
     path("admin/", admin.site.urls),
