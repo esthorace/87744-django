@@ -31,12 +31,12 @@
                     <span class="model-card-cta">Ver listado →</span>
                 </a>
             {% endif %}
-            <div class="model-card model-card--disabled" aria-disabled="true">
+            <a class="model-card" href="{% url 'ventas:proveedor_list' %}">
                 <span class="model-icon model-icon--blue material-symbols-rounded">local_shipping</span>
                 <h3 class="model-card-title">Proveedores</h3>
                 <p class="model-card-copy">Contactos de quienes abastecen la despensa.</p>
-                <span class="model-badge">Próximamente</span>
-            </div>
+                <span class="model-card-cta">Ver listado →</span>
+            </a>
         </div>
     </div>
 {% endblock content %}

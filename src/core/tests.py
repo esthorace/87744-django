@@ -13,6 +13,21 @@ class LoginViewTests(TestCase):
             f'href="{reverse("core:login")}" class="nav-cta">Acceder</a>',
         )
 
+    def test_authenticated_user_sees_panel_link(self):
+        user = get_user_model().objects.create_user(
+            username="usuario",
+            password="clave-de-prueba",
+        )
+        self.client.force_login(user)
+
+        response = self.client.get(reverse("core:home"))
+
+        self.assertContains(
+            response,
+            f'href="{reverse("ventas:home")}" class="nav-cta">Ventas</a>',
+        )
+        self.assertNotContains(response, "Acceder")
+
     def test_successful_login_redirects_to_ventas_home(self):
         user = get_user_model().objects.create_user(
             username="usuario",

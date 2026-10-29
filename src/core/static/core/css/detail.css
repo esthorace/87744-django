@@ -45,6 +45,54 @@
   border-bottom: 1px dashed var(--line);
 }
 
+/* HEAD CON AVATAR — foto de perfil a la izquierda del título */
+.detail-head--profile {
+  flex-direction: row;
+  align-items: center;
+  gap: 22px;
+}
+
+.detail-head-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+}
+
+.detail-avatar {
+  flex: 0 0 auto;
+  width: 124px;
+  height: 124px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 4px solid var(--surface);
+  border-radius: 30px;
+  background: var(--bg);
+  box-shadow: 0 12px 26px rgba(32, 32, 32, 0.12);
+  transform: rotate(-2deg);
+}
+
+.detail-avatar img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.detail-avatar-fallback {
+  color: #55514a;
+  font-size: 2.7rem;
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.detail-card--blue .detail-avatar {
+  background: #e6f0ff;
+}
+
 .detail-kicker {
   display: inline-flex;
   align-items: center;
@@ -216,6 +264,22 @@
 
   .detail-title {
     font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+
+  .detail-head--profile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .detail-avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 24px;
+  }
+
+  .detail-avatar-fallback {
+    font-size: 2rem;
   }
 
   .detail-fields {

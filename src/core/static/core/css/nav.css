@@ -134,4 +134,9 @@
   .nav-links a:not(.nav-cta) {
     display: none;
   }
+
+  /* En pantallas chicas el nombre de usuario cede espacio a la navegación. */
+  .nav-user {
+    display: none;
+  }
 }

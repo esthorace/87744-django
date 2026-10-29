@@ -9,10 +9,20 @@
 {% block content %}
     <div class="container section">
         <div class="detail-card detail-card--blue">
-            <header class="detail-head">
-                <span class="detail-kicker">Vendedor</span>
-                <h1 class="detail-title">{{ vendedor }}</h1>
-                <span class="detail-id">ID {{ vendedor.pk }}</span>
+            <header class="detail-head detail-head--profile">
+                <figure class="detail-avatar">
+                    {% if vendedor.foto_perfil %}
+                        <img src="{{ vendedor.foto_perfil.url }}"
+                             alt="Foto de perfil de {{ vendedor }}" />
+                    {% else %}
+                        <span class="detail-avatar-fallback" aria-hidden="true">👤</span>
+                    {% endif %}
+                </figure>
+                <div class="detail-head-text">
+                    <span class="detail-kicker">Vendedor</span>
+                    <h1 class="detail-title">{{ vendedor }}</h1>
+                    <span class="detail-id">ID {{ vendedor.pk }}</span>
+                </div>
             </header>
             <dl class="detail-fields">
                 <div class="detail-field">
@@ -40,19 +50,6 @@
                     <dd class="detail-value
                                {% if not vendedor.telefono %}detail-value--empty{% endif %}">
                         {{ vendedor.telefono|default:"Sin teléfono" }}
-                    </dd>
-                </div>
-                <div class="detail-field detail-field--wide">
-                    <dt class="detail-label">Foto de perfil</dt>
-                    <dd class="detail-value
-                               {% if not vendedor.foto_perfil %}detail-value--empty{% endif %}">
-                        {% if vendedor.foto_perfil %}
-                            <a href="{{ vendedor.foto_perfil.url }}"
-                               target="_blank"
-                               rel="noopener">Ver imagen</a>
-                        {% else %}
-                            Sin foto
-                        {% endif %}
                     </dd>
                 </div>
             </dl>

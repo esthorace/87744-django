@@ -26,6 +26,14 @@ urlpatterns += [
 ]
 
 urlpatterns += [
+    path("proveedor/", ProveedorList.as_view(), name="proveedor_list"),
+    path("proveedor/create/", ProveedorCreate.as_view(), name="proveedor_create"),
+    path("proveedor/detail/<int:pk>", ProveedorDetail.as_view(), name="proveedor_detail"),
+    path("proveedor/update/<int:pk>", ProveedorUpdate.as_view(), name="proveedor_update"),
+    path("proveedor/delete/<int:pk>", ProveedorDelete.as_view(), name="proveedor_delete"),
+]
+
+urlpatterns += [
     path("vendedor/", VendedorList.as_view(), name="vendedor_list"),
     path("vendedor/create/", VendedorCreate.as_view(), name="vendedor_create"),
     path("vendedor/detail/<int:pk>", VendedorDetail.as_view(), name="vendedor_detail"),

@@ -4,7 +4,7 @@ from django import forms
 
 from core.validators import ValidarTextoEspañol
 
-from .models import Categoria, Producto, Vendedor
+from .models import Categoria, Producto, Proveedor, Vendedor
 
 
 class CategoriaForm(forms.ModelForm):
@@ -39,6 +39,12 @@ class ProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
         fields = "__all__"
+
+
+class ProveedorForm(forms.ModelForm):
+    class Meta:
+        model = Proveedor
+        fields = ("nombre", "telefono", "email")
 
 
 class VendedorForm(forms.ModelForm):

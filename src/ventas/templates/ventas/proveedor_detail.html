@@ -1,0 +1,43 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'core/css/detail.css' %}" />
+{% endblock styles %}
+
+{% block content %}
+    <div class="container section">
+        <div class="detail-card detail-card--blue">
+            <header class="detail-head">
+                <span class="detail-kicker">Proveedor</span>
+                <h1 class="detail-title">{{ proveedor.nombre }}</h1>
+                <span class="detail-id">ID {{ proveedor.pk }}</span>
+            </header>
+            <dl class="detail-fields">
+                <div class="detail-field">
+                    <dt class="detail-label">Nombre</dt>
+                    <dd class="detail-value">{{ proveedor.nombre }}</dd>
+                </div>
+                <div class="detail-field">
+                    <dt class="detail-label">Teléfono</dt>
+                    <dd class="detail-value
+                               {% if not proveedor.telefono %}detail-value--empty{% endif %}">
+                        {{ proveedor.telefono|default:"Sin teléfono" }}
+                    </dd>
+                </div>
+                <div class="detail-field">
+                    <dt class="detail-label">Correo electrónico</dt>
+                    <dd class="detail-value
+                               {% if not proveedor.email %}detail-value--empty{% endif %}">
+                        {{ proveedor.email|default:"Sin correo" }}
+                    </dd>
+                </div>
+            </dl>
+            <div class="page-actions detail-actions">
+                <a class="button button-secondary"
+                   href="{% url 'ventas:proveedor_list' %}">Volver</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

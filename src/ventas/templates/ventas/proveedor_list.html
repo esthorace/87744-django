@@ -1,0 +1,57 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'core/css/table.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/css/search.css' %}" />
+{% endblock styles %}
+
+{% block content %}
+    <div class="container section">
+        <div class="page-head">
+            <h1 class="page-title">Proveedores - Listado</h1>
+            {% if user.is_staff %}
+                <a class="button button-primary"
+                   href="{% url 'ventas:proveedor_create' %}">Crear</a>
+            {% endif %}
+        </div>
+        {% include "core/partials/search.html" with placeholder="Buscar proveedores por nombre, teléfono o correo…" label="Buscar proveedores" clear_url="ventas:proveedor_list" %}
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Correo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for proveedor in proveedores %}
+                    <tr>
+                        <td>{{ proveedor.nombre }}</td>
+                        <td>{{ proveedor.telefono|default:"—" }}</td>
+                        <td>{{ proveedor.email|default:"—" }}</td>
+                        <td class="table-actions">
+                            <a class="table-action table-action--view"
+                               href="{% url 'ventas:proveedor_detail' proveedor.pk %}">Ver</a>
+                            {% if user.is_staff %}
+                                <a class="table-action table-action--edit"
+                                   href="{% url 'ventas:proveedor_update' proveedor.pk %}">Editar</a>
+                                <a class="table-action table-action--danger"
+                                   href="{% url 'ventas:proveedor_delete' proveedor.pk %}">Eliminar</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td class="table-empty" colspan="4">No hay proveedores disponibles.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="page-actions">
+            <a class="button button-secondary" href="{% url 'ventas:home' %}">Volver</a>
+        </div>
+    </div>
+{% endblock content %}
