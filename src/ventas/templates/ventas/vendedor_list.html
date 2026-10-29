@@ -11,6 +11,8 @@
     <div class="container section">
         <div class="page-head">
             <h1 class="page-title">Vendedores - Listado</h1>
+            <a class="button button-primary"
+               href="{% url 'ventas:vendedor_create' %}">Crear</a>
         </div>
         {% include "core/partials/search.html" with placeholder="Buscar vendedores por nombre o usuario…" label="Buscar vendedores" clear_url="ventas:vendedor_list" %}
         <table class="data-table">
@@ -41,7 +43,7 @@
                     </tr>
                 {% empty %}
                     <tr>
-                        <td class="table-empty" colspan="3">No hay vendedores disponibles.</td>
+                        <td class="table-empty" colspan="4">No hay vendedores disponibles.</td>
                     </tr>
                 {% endfor %}
             </tbody>

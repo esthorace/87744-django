@@ -1,9 +1,12 @@
-__all__ = ["VendedorDetail", "VendedorList"]
+__all__ = ["VendedorCreate", "VendedorDetail", "VendedorList"]
 
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 from django.db.models.query import QuerySet
-from django.views.generic import DetailView, ListView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DetailView, ListView
 
+from ..forms import VendedorForm
 from ..models import Vendedor
 
 
@@ -26,3 +29,11 @@ class VendedorList(ListView):
 class VendedorDetail(DetailView):
     model = Vendedor
     context_object_name = "vendedor"
+
+
+class VendedorCreate(SuccessMessageMixin, CreateView):
+    model = Vendedor
+    form_class = VendedorForm
+    success_url = reverse_lazy("ventas:vendedor_list")
+    # template_name = "ventas/vendedor_form.html"  -> por default busca <nombremodelo_form.html>
+    success_message = "El vendedor se ha creado exitosamente"
