@@ -30,4 +30,5 @@ urlpatterns += [
     path("vendedor/create/", VendedorCreate.as_view(), name="vendedor_create"),
     path("vendedor/detail/<int:pk>", VendedorDetail.as_view(), name="vendedor_detail"),
     path("vendedor/update/<int:pk>", VendedorUpdate.as_view(), name="vendedor_update"),
+    path("vendedor/delete/<int:pk>", VendedorDelete.as_view(), name="vendedor_delete"),
 ]

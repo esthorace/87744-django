@@ -1,10 +1,16 @@
-__all__ = ["VendedorCreate", "VendedorDetail", "VendedorList", "VendedorUpdate"]
+__all__ = [
+    "VendedorCreate",
+    "VendedorDelete",
+    "VendedorDetail",
+    "VendedorList",
+    "VendedorUpdate",
+]
 
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 from django.db.models.query import QuerySet
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView, UpdateView
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
 from ..forms import VendedorForm
 from ..models import Vendedor
@@ -45,3 +51,10 @@ class VendedorUpdate(SuccessMessageMixin, UpdateView):
     success_url = reverse_lazy("ventas:vendedor_list")
     # template_name = "ventas/vendedor_form.html"  -> por default busca <nombremodelo_form.html>
     success_message = "El vendedor se ha editado exitosamente"
+
+
+class VendedorDelete(SuccessMessageMixin, DeleteView):
+    model = Vendedor
+    success_url = reverse_lazy("ventas:vendedor_list")
+    # template_name = "ventas/vendedor_confirm_delete.html"  -> por default busca <nombremodelo_confirm_delete.html>
+    success_message = "El vendedor se ha eliminado"

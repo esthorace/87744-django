@@ -35,10 +35,8 @@
                                href="{% url 'ventas:vendedor_detail' vendedor.pk %}">Ver</a>
                             <a class="table-action table-action--edit"
                                href="{% url 'ventas:vendedor_update' vendedor.pk %}">Editar</a>
-                            {% comment  %}
                             <a class="table-action table-action--danger"
-                            href="{% url 'ventas:vendedor_delete' vendedor.pk %}">Eliminar</a>
-                            {% endcomment %}
+                               href="{% url 'ventas:vendedor_delete' vendedor.pk %}">Eliminar</a>
                         </td>
                     </tr>
                 {% empty %}
