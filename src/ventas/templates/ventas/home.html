@@ -23,12 +23,14 @@
                 <p class="model-card-copy">Artículos con precios, stock y código de barras.</p>
                 <span class="model-card-cta">Ver listado →</span>
             </a>
-            <a class="model-card" href="{% url 'ventas:vendedor_list' %}">
-                <span class="model-icon model-icon--mint material-symbols-rounded">inventory_2</span>
-                <h3 class="model-card-title">Vendedores</h3>
-                <p class="model-card-copy">Personas que atienden y gestionan las ventas</p>
-                <span class="model-card-cta">Ver listado →</span>
-            </a>
+            {% if user.is_staff %}
+                <a class="model-card" href="{% url 'ventas:vendedor_list' %}">
+                    <span class="model-icon model-icon--mint material-symbols-rounded">inventory_2</span>
+                    <h3 class="model-card-title">Vendedores</h3>
+                    <p class="model-card-copy">Personas que atienden y gestionan las ventas</p>
+                    <span class="model-card-cta">Ver listado →</span>
+                </a>
+            {% endif %}
             <div class="model-card model-card--disabled" aria-disabled="true">
                 <span class="model-icon model-icon--blue material-symbols-rounded">local_shipping</span>
                 <h3 class="model-card-title">Proveedores</h3>

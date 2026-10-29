@@ -12,11 +12,13 @@ from django.db.models.query import QuerySet
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
+from core.mixins import StaffRequiredMixin
+
 from ..forms import VendedorForm
 from ..models import Vendedor
 
 
-class VendedorList(ListView):
+class VendedorList(StaffRequiredMixin, ListView):
     model = Vendedor
     context_object_name = "vendedores"
 
@@ -32,12 +34,12 @@ class VendedorList(ListView):
         return vendedores
 
 
-class VendedorDetail(DetailView):
+class VendedorDetail(StaffRequiredMixin, DetailView):
     model = Vendedor
     context_object_name = "vendedor"
 
 
-class VendedorCreate(SuccessMessageMixin, CreateView):
+class VendedorCreate(StaffRequiredMixin, SuccessMessageMixin, CreateView):
     model = Vendedor
     form_class = VendedorForm
     success_url = reverse_lazy("ventas:vendedor_list")
@@ -45,7 +47,7 @@ class VendedorCreate(SuccessMessageMixin, CreateView):
     success_message = "El vendedor se ha creado exitosamente"
 
 
-class VendedorUpdate(SuccessMessageMixin, UpdateView):
+class VendedorUpdate(StaffRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Vendedor
     form_class = VendedorForm
     success_url = reverse_lazy("ventas:vendedor_list")
@@ -53,7 +55,7 @@ class VendedorUpdate(SuccessMessageMixin, UpdateView):
     success_message = "El vendedor se ha editado exitosamente"
 
 
-class VendedorDelete(SuccessMessageMixin, DeleteView):
+class VendedorDelete(StaffRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Vendedor
     success_url = reverse_lazy("ventas:vendedor_list")
     # template_name = "ventas/vendedor_confirm_delete.html"  -> por default busca <nombremodelo_confirm_delete.html>
