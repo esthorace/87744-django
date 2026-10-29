@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 
 
@@ -62,3 +62,37 @@ class LogoutViewTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Sesión cerrada")
+
+
+class ErrorPagesTests(TestCase):
+    """Las páginas de error usan templates propios con el estilo del sitio."""
+
+    def test_403_usa_template_propio(self):
+        user = get_user_model().objects.create_user(
+            username="sin-staff",
+            password="clave-de-prueba",
+        )
+        self.client.force_login(user)
+
+        response = self.client.get(reverse("ventas:vendedor_list"))
+
+        self.assertEqual(response.status_code, 403)
+        self.assertTemplateUsed(response, "403.html")
+        self.assertContains(response, "Acceso restringido", status_code=403)
+        self.assertContains(response, "core/css/error.css", status_code=403)
+
+    @override_settings(DEBUG=False)
+    def test_404_usa_template_propio(self):
+        user = get_user_model().objects.create_user(
+            username="staff",
+            password="clave-de-prueba",
+            is_staff=True,
+        )
+        self.client.force_login(user)
+
+        response = self.client.get("/ruta-que-no-existe/")
+
+        self.assertEqual(response.status_code, 404)
+        self.assertTemplateUsed(response, "404.html")
+        self.assertContains(response, "Página no encontrada", status_code=404)
+        self.assertContains(response, "core/css/error.css", status_code=404)

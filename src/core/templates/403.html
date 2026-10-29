@@ -1,0 +1,25 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'core/css/error.css' %}" />
+{% endblock styles %}
+
+{% block content %}
+    <div class="container section">
+        <div class="error-card error-card--403">
+            <span class="error-badge" aria-hidden="true">🔒</span>
+            <span class="error-code">403</span>
+            <h1 class="error-title">Acceso restringido</h1>
+            <p class="error-copy">
+                Esta sección es solo para el personal del negocio. Si necesitás entrar,
+                pedile a un administrador que active tu cuenta de staff.
+            </p>
+            <div class="page-actions error-actions">
+                <a class="button button-primary" href="{% url 'core:home' %}">Volver al inicio</a>
+                <a class="button button-secondary" href="{% url 'ventas:home' %}">Ir al panel</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
