@@ -1,0 +1,42 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'core/css/table.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/css/search.css' %}" />
+{% endblock styles %}
+
+{% block content %}
+    <div class="container section">
+        <div class="page-head">
+            <h1 class="page-title">Vendedores - Listado</h1>
+        </div>
+        {% include "core/partials/search.html" with placeholder="Buscar vendedores por nombre o usuario…" label="Buscar vendedores" clear_url="ventas:vendedor_list" %}
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Vendedor</th>
+                    <th>Teléfono</th>
+                    <th>Correo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vendedor in vendedores %}
+                    <tr>
+                        <td>{{ vendedor }}</td>
+                        <td>{{ vendedor.telefono|default:"—" }}</td>
+                        <td>{{ vendedor.usuario.email|default:"—" }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td class="table-empty" colspan="3">No hay vendedores disponibles.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="page-actions">
+            <a class="button button-secondary" href="{% url 'ventas:home' %}">Volver</a>
+        </div>
+    </div>
+{% endblock content %}
