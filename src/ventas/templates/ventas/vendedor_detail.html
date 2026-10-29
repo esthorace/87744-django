@@ -1,0 +1,65 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'core/css/detail.css' %}" />
+{% endblock styles %}
+
+{% block content %}
+    <div class="container section">
+        <div class="detail-card detail-card--blue">
+            <header class="detail-head">
+                <span class="detail-kicker">Vendedor</span>
+                <h1 class="detail-title">{{ vendedor }}</h1>
+                <span class="detail-id">ID {{ vendedor.pk }}</span>
+            </header>
+            <dl class="detail-fields">
+                <div class="detail-field">
+                    <dt class="detail-label">Usuario</dt>
+                    <dd class="detail-value">
+                        {{ vendedor.usuario.username }}
+                    </dd>
+                </div>
+                <div class="detail-field">
+                    <dt class="detail-label">Nombre completo</dt>
+                    <dd class="detail-value
+                               {% if not vendedor.usuario.get_full_name %}detail-value--empty{% endif %}">
+                        {{ vendedor.usuario.get_full_name|default:"Sin datos" }}
+                    </dd>
+                </div>
+                <div class="detail-field">
+                    <dt class="detail-label">Correo electrónico</dt>
+                    <dd class="detail-value
+                               {% if not vendedor.usuario.email %}detail-value--empty{% endif %}">
+                        {{ vendedor.usuario.email|default:"Sin correo" }}
+                    </dd>
+                </div>
+                <div class="detail-field">
+                    <dt class="detail-label">Teléfono</dt>
+                    <dd class="detail-value
+                               {% if not vendedor.telefono %}detail-value--empty{% endif %}">
+                        {{ vendedor.telefono|default:"Sin teléfono" }}
+                    </dd>
+                </div>
+                <div class="detail-field detail-field--wide">
+                    <dt class="detail-label">Foto de perfil</dt>
+                    <dd class="detail-value
+                               {% if not vendedor.foto_perfil %}detail-value--empty{% endif %}">
+                        {% if vendedor.foto_perfil %}
+                            <a href="{{ vendedor.foto_perfil.url }}"
+                               target="_blank"
+                               rel="noopener">Ver imagen</a>
+                        {% else %}
+                            Sin foto
+                        {% endif %}
+                    </dd>
+                </div>
+            </dl>
+            <div class="page-actions detail-actions">
+                <a class="button button-secondary"
+                   href="{% url 'ventas:vendedor_list' %}">Volver</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

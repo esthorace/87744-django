@@ -27,4 +27,5 @@ urlpatterns += [
 
 urlpatterns += [
     path("vendedor/", VendedorList.as_view(), name="vendedor_list"),
+    path("vendedor/detail/<int:pk>", VendedorDetail.as_view(), name="vendedor_detail"),
 ]

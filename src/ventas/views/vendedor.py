@@ -1,8 +1,8 @@
-__all__ = ["VendedorList"]
+__all__ = ["VendedorDetail", "VendedorList"]
 
 from django.db.models import Q
 from django.db.models.query import QuerySet
-from django.views.generic import ListView
+from django.views.generic import DetailView, ListView
 
 from ..models import Vendedor
 
@@ -21,3 +21,8 @@ class VendedorList(ListView):
                 | Q(usuario__username__icontains=busqueda)
             )
         return vendedores
+
+
+class VendedorDetail(DetailView):
+    model = Vendedor
+    context_object_name = "vendedor"

@@ -19,6 +19,7 @@
                     <th>Vendedor</th>
                     <th>Teléfono</th>
                     <th>Correo</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +28,16 @@
                         <td>{{ vendedor }}</td>
                         <td>{{ vendedor.telefono|default:"—" }}</td>
                         <td>{{ vendedor.usuario.email|default:"—" }}</td>
+                        <td class="table-actions">
+                            <a class="table-action table-action--view"
+                               href="{% url 'ventas:vendedor_detail' vendedor.pk %}">Ver</a>
+                            {% comment  %}
+                            <a class="table-action table-action--edit"
+                            href="{% url 'ventas:vendedor_update' vendedor.pk %}">Editar</a>
+                            <a class="table-action table-action--danger"
+                            href="{% url 'ventas:vendedor_delete' vendedor.pk %}">Eliminar</a>
+                            {% endcomment %}
+                        </td>
                     </tr>
                 {% empty %}
                     <tr>
